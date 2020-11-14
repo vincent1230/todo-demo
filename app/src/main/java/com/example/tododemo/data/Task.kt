@@ -15,10 +15,20 @@
  */
 package com.example.tododemo.data
 
+import android.R.attr.x
+import android.graphics.Paint
+import android.graphics.drawable.Drawable
+import android.view.View
+import android.widget.TextView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.UUID
+import com.dailystudio.devbricksx.annotations.*
+import com.dailystudio.devbricksx.ui.AbsSingleLineViewHolder
+import com.dailystudio.devbricksx.utils.ResourcesCompatUtils
+import com.example.tododemo.R
+import java.util.*
+
 
 @Entity(tableName = "tasks")
 data class Task @JvmOverloads constructor(
@@ -36,4 +46,49 @@ data class Task @JvmOverloads constructor(
 
     val isEmpty
         get() = title.isEmpty() || description.isEmpty()
+}
+
+@Adapter(viewType = ViewType.SingleLine, viewHolder = DTaskViewHolder::class, paged = false)
+@ListFragment(layout = R.layout.fragment_tasks)
+@ViewModel
+@RoomCompanion(
+    primaryKeys = ["entryid"]
+)
+class DTask(
+    @JvmField val entryid: String = UUID.randomUUID().toString(),
+    @JvmField var title: String = "",
+    @JvmField var description: String = "",
+    @JvmField var completed: Boolean = false
+)
+
+
+class DTaskViewHolder(itemView: View) : AbsSingleLineViewHolder<DTask>(itemView) {
+
+    override fun getIcon(item: DTask): Drawable? {
+        val resId = if (item.completed) {
+            R.drawable.ic_done
+        } else {
+            R.drawable.ic_todo
+        }
+        return ResourcesCompatUtils.getDrawable(
+            itemView.context,
+            resId
+        )
+    }
+
+    override fun bindText(item: DTask, titleView: TextView?) {
+        super.bindText(item, titleView)
+
+        val textView = titleView ?: return
+        if (item.completed) {
+            textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            textView.paintFlags = textView.paintFlags and (Paint.STRIKE_THRU_TEXT_FLAG).inv()
+        }
+    }
+
+    override fun getText(item: DTask): CharSequence? {
+        return item.title?.capitalize()
+    }
+
 }

@@ -11,9 +11,11 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -72,4 +74,18 @@ dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+
+    implementation "com.dailystudio:devbricksx:${project.ext.devbricksxVersion}"
+    implementation "com.dailystudio:devbricksx-java-annotations:${project.ext.devbricksxVersion}"
+    implementation "com.dailystudio:devbricksx-kotlin-annotations:${project.ext.devbricksxVersion}"
+    implementation "com.airbnb.android:lottie:${project.ext.lottieVersion}"
+
+
+    kapt "com.dailystudio:devbricksx-java-compiler:${project.ext.devbricksxVersion}"
+    kapt "com.dailystudio:devbricksx-kotlin-compiler:${project.ext.devbricksxVersion}"
+
+    kapt "androidx.room:room-compiler:${project.ext.roomVersion}"
+
+
 }

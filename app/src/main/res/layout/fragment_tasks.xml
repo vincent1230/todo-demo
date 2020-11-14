@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/fragment_view_root"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/add_task_fab"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentEnd="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/fab_margin"
+		android:src="@drawable/ic_add"
+		app:fabSize="normal"
+		app:layout_anchorGravity="bottom|right|end" />
+
+	<com.airbnb.lottie.LottieAnimationView
+		android:id="@+id/demo_animation"
+		app:lottie_fileName="lottiefiles/28654-happy-freelancer.json"
+		app:lottie_autoPlay="true"
+		app:lottie_loop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_width="@dimen/animation_size"
+		android:layout_height="@dimen/animation_size"/>
+
+	<TextView
+		android:id="@+id/attribution"
+		android:text="@string/animation_attribution"
+		style="@style/AttributeText"
+		android:layout_alignParentBottom="true"
+		android:layout_toEndOf="@id/demo_animation"
+		android:layout_toStartOf="@id/add_task_fab"
+		android:layout_width="@dimen/animation_size"
+		android:layout_height="wrap_content"/>
+
+	<androidx.recyclerview.widget.RecyclerView
+        android:id="@android:id/list"
+		style="@style/DefaultRecyclerView"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>
+
+</RelativeLayout>

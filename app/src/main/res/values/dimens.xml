@@ -26,4 +26,8 @@
     <dimen name="header_padding">16dp</dimen>
     <dimen name="header_image_width">100dp</dimen>
 
+    <dimen name="animation_size">200dp</dimen>
+    <dimen name="attribute_font_size">8dp</dimen>
+    <dimen name="attribute_text_padding">4dp</dimen>
+
 </resources>

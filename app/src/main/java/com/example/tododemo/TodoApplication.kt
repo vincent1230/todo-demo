@@ -17,10 +17,12 @@
 package com.example.tododemo
 
 import android.app.Application
+import com.dailystudio.devbricksx.app.DevBricksApplication
 
-class TodoApplication : Application() {
+class TodoApplication : DevBricksApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun isDebugBuild(): Boolean {
+        return BuildConfig.DEBUG
     }
+
 }
