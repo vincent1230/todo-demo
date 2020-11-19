@@ -41,7 +41,7 @@ import kotlin.math.min
 
 class TasksFragment : DTasksListFragment() {
 
-    private var filter = TasksFilterType.ACTIVE_TASKS
+    private var filter = TasksFilterType.ALL_TASKS
 
     override fun onCreateView(
         inflater: LayoutInflater,

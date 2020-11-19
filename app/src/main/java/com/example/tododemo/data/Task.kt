@@ -15,7 +15,6 @@
  */
 package com.example.tododemo.data
 
-import android.R.attr.x
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.view.View
