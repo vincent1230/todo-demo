@@ -15,15 +15,13 @@
  */
 package com.example.tododemo.taskdetail
 
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -32,11 +30,11 @@ import androidx.navigation.fragment.navArgs
 import com.dailystudio.devbricksx.development.Logger
 import com.example.tododemo.R
 import com.example.tododemo.data.DTask
-import com.example.tododemo.data.Task
 import com.example.tododemo.data.model.DTaskViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class TaskDetailFragment : Fragment() {
 
@@ -79,12 +77,17 @@ class TaskDetailFragment : Fragment() {
 
     private fun attachTask(task: DTask) {
         titleView?.setText(task.title)
+        titleView?.setSelection(task.title.length)
+        titleView?.requestFocus()
+
         descView?.setText(task.description)
         completedView?.isChecked = task.completed
     }
 
     private fun setupViews(view: View) {
         titleView = view.findViewById(R.id.title)
+        titleView?.requestFocus()
+
         descView = view.findViewById(R.id.description)
         completedView = view.findViewById(R.id.completed)
     }
@@ -95,7 +98,8 @@ class TaskDetailFragment : Fragment() {
                 if (entryId.isNotBlank()) {
                     deleteTask()
                 }
-                findNavController().popBackStack()
+
+                backToTaskList()
                 true
             }
 
@@ -111,7 +115,7 @@ class TaskDetailFragment : Fragment() {
                     updateExistTask()
                 }
 
-                findNavController().popBackStack()
+                backToTaskList()
                 true
             }
             else -> false
@@ -183,6 +187,15 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
+    private fun backToTaskList() {
+        val context = requireContext()
+
+        val imm: InputMethodManager? =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+        findNavController().popBackStack()
+    }
 
 }
 
