@@ -15,83 +15,43 @@
   -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator_layout"
+    <RelativeLayout
+        android:id="@+id/fragment_view_root"
+        android:padding="@dimen/default_content_padding"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/anchor_layout"
+        <EditText
+            android:id="@+id/title"
+            style="@style/TitleInput"
+            android:background="@null"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin">
+            android:layout_height="wrap_content"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin">
+        <View
+            android:id="@+id/divider"
+            android:layout_below="@id/title"
+            android:background="@drawable/list_divider"
+            android:layout_width="match_parent"
+            android:layout_height="2px"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="data description"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
+        <CheckBox
+            android:id="@+id/completed"
+            android:text="@string/label_to_complete"
+            style="@style/DefaultLabel"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin">
+        <EditText
+            android:id="@+id/description"
+            style="@style/DescInput"
+            android:background="@null"
+            android:layout_below="@id/divider"
+            android:layout_above="@id/completed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-                <CheckBox
-                    android:id="@+id/task_detail_complete_checkbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="1dp" />
+    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/task_detail_title_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/task_detail_complete_checkbox"
-                    android:paddingTop="1dp"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/task_detail_description_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/task_detail_title_text"
-                    android:layout_toRightOf="@id/task_detail_complete_checkbox"
-                    android:paddingTop="1dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/edit_task_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_edit"
-            app:fabSize="normal"
-            app:layout_anchor="@id/anchor_layout"
-            app:layout_anchorGravity="bottom|right|end" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
